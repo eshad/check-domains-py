@@ -16,11 +16,20 @@ def run():
     for dom in domains:
         if dom is not None and dom != '':
             details = pythonwhois.get_whois(dom)
-            if details['contacts']['registrant'] is not None:
+	    date = ""
+	    try:
+		date = str(details['creation_date'])
+		#print type (date)
+	    except:
+		print ""
+	    #print "\n"
+	    #print "\n"
+	    
+            if date != "":
                 unavailable.append(dom)
             else:
                 available.append(dom)
-
+            date = ""
 def printAvailability():
     print "-----------------------------"
     print "Unavailable Domains: "
